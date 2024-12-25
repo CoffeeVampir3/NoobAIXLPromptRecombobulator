@@ -3,7 +3,7 @@
 ### For NoobAI-XL Models
 Like ![](https://huggingface.co/Laxhar/noobai-XL-Vpred-1.0)
 
-This will reformat a list of tags into the recommended ordering based on their danbooru tag, highlight aliased tags, and warn you if something is not a tag. Gray tags (unknown) will likely descrease the quality of a prompt. Any artist names will automaticlaly be tagged `artist:name` as recommended by the prompting format. 
+This will reformat a list of tags into the recommended ordering based on their danbooru tag, highlight aliased tags, and warn you if something is not a tag. Gray tags (unknown) will likely decrease the quality of a prompt. Any artist names will automaticlaly be tagged `artist:name` as recommended by the prompting format. 
 
 Run via
 ```
