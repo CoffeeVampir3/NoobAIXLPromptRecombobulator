@@ -1,5 +1,6 @@
 import gradio as gr
 import polars as pl
+import re
 from typing import List, Tuple, Optional, Dict, Set
 from modules.tag_loader import load_tag_dataset, inject_or_change_specials, SYNTHETIC_CATEGORY_TAGS
 from modules.prompt_rearranger import rearrange_prompt
@@ -38,8 +39,8 @@ def highlight_text(text: str, tags: Set[str], alias_map: Dict[str, str]) -> List
     if not text:
         return []
 
-    text = text.replace('\\(', '(').replace('\\)', ')')
     text = text.replace('artist:', '')
+    text = text.replace('\\(', '(').replace('\\)', ')')
     text = rearrange_prompt(df, text, tags, alias_map)
     
     # Split on commas and clean up whitespace
@@ -66,6 +67,7 @@ def highlight_text(text: str, tags: Set[str], alias_map: Dict[str, str]) -> List
         else:
             # Handle regular tags (with underscore conversion)
             cleaned_term = clean_tag_for_matching(term_to_check)
+            original_term = original_term.replace('(', '\(').replace(')', '\)')
             
             if cleaned_term in tags:
                 result.append((original_term, "tag"))  # Keep original format with prefix if present
